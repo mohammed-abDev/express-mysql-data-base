@@ -93,6 +93,30 @@ connection.query(createTable4, (err, result, field) => {
     res.end("All tables are created successfully!");
 });
 
+/*==============POST==================*/
+app.post("/add-product", (req, res) => {
+console.log(req.body);
+//   const product_url = req.body.product_url;
+//   const product_name = req.body.product_name;
+  const {product_url,product_name} = req.body;
+
+  let insertproduct = `INSERT INTO iphoneProducts (product_url, product_name) VALUES (?, ?)`;
+
+  connection.query(insertproduct,[product_url, product_name],(err, result) => {
+    if (err) {
+        console.error("Insert error:", err.message);
+        res.send("Error saving product");
+        res.end();
+    } else {
+        console.log("Data inserted:", result.insertId);
+        res.send("<h3 style='color:green;'>Product saved successfully!</h3>");
+        res.end();
+    }
+    }
+  );
+});
+
+
 
 /*================================*/
 app.listen(3000, (err) => {

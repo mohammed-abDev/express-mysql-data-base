@@ -1,98 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>product form</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Product</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add All Data</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 0;
     }
-
-    .form-container {
-      background: #fff;
-      padding: 20px 30px;
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px 40px;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      width: 350px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     h2 {
       text-align: center;
       color: #333;
       margin-bottom: 20px;
     }
-
+    form {
+      display: grid;
+      gap: 15px;
+    }
     label {
-      display: block;
-      margin-bottom: 6px;
+      font-weight: bold;
       color: #555;
-      font-size: 14px;
     }
-
-    input[type="text"],
-    input[type="url"] {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    button {
-      width: 100%;
-      background-color: #007bff;
-      color: white;
+    input, textarea {
       padding: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
       font-size: 15px;
     }
-
-    button:hover {
-      background-color: #0056b3;
+    textarea {
+      resize: vertical;
+      height: 80px;
     }
-
-    .note {
-      text-align: center;
-      font-size: 12px;
-      color: #777;
-      margin-top: 10px;
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #0056b3;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Add iPhone Product</h2>
-    <form action="http://localhost:3000/add-product" method="POST">
-      
-      <label for="product_url">Product URL</label>
-      <input type="url" id="product_url" name="product_url" placeholder="https://example.com/iphone-se" required>
+  <div class="container">
+    <h2>Add Product Information</h2>
+    <form action="/add-all" method="POST">
 
-      <label for="product_name">Product Name</label>
-      <input type="text" id="product_name" name="product_name" placeholder="e.g. iPhone se" required>
-      
+      <!-- iphoneProducts -->
+      <h3>Product Basic Info</h3>
+      <label>Product Name</label>
+      <input type="text" name="product_name" required />
 
-      <button type="submit">Save Product</button>
+      <label>Product URL</label>
+      <input type="text" name="product_url" required />
+
+      <!-- ProductDescription -->
+      <h3>Product Description</h3>
+      <label>Brief Description</label>
+      <input type="text" name="product_brief_description" required />
+
+      <label>Full Description</label>
+      <textarea name="product_description" required></textarea>
+
+      <label>Product Image URL</label>
+      <input type="text" name="product_img" required />
+
+      <label>Product Link</label>
+      <input type="text" name="product_link" required />
+
+      <!-- ProductPrice -->
+      <h3>Product Price</h3>
+      <label>Starting Price</label>
+      <input type="text" name="starting_price" required />
+
+      <label>Price Range</label>
+      <input type="text" name="price_range" required />
+
+      <!-- UserTable -->
+      <h3>User Info</h3>
+      <label>User Name</label>
+      <input type="text" name="user_name" required />
+
+      <label>User Password</label>
+      <input type="password" name="user_password" required />
+
+      <button type="submit">Save All Data</button>
     </form>
   </div>
-</body>
-</html>
-
 </body>
 </html>

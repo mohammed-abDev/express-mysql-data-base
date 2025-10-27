@@ -94,28 +94,64 @@ connection.query(createTable4, (err, result, field) => {
 });
 
 /*==============POST==================*/
-app.post("/add-product", (req, res) => {
-console.log(req.body);
-//   const product_url = req.body.product_url;
-//   const product_name = req.body.product_name;
-  const {product_url,product_name} = req.body;
+app.post("/add-all", (req, res) => {
+  console.log(req.body);
+  //   const product_url = req.body.product_url;
+  //   const product_name = req.body.product_name;
+  const { product_url, product_name } = req.body;
 
   let insertproduct = `INSERT INTO iphoneProducts (product_url, product_name) VALUES (?, ?)`;
 
-  connection.query(insertproduct,[product_url, product_name],(err, result) => {
-    if (err) {
+  connection.query(
+    insertproduct,
+    [product_url, product_name],
+    (err, result) => {
+      if (err) {
         console.error("Insert error:", err.message);
         res.send("Error saving product");
         res.end();
-    } else {
+      } else {
         console.log("Data inserted:", result.insertId);
         res.send("<h3 style='color:green;'>Product saved successfully!</h3>");
         res.end();
-    }
+      }
     }
   );
 });
+/*==============POST-ProductDescription==================*/
+app.post("/add-all", (req, res) => {
+  console.log(req.body);
+  const {
+    product_brief_description,
+    product_description,
+    product_img,
+    product_link,
+  } = req.body;
 
+  let insertProductDescription = `INSERT INTO ProductDescription ( 
+    product_brief_description,
+    product_description,
+    product_img,
+    product_link,) VALUES (?, ?)`;
+
+  connection.query(
+    insertProductDescription,
+    [product_brief_description, product_description, product_img, product_link],
+    (err, result) => {
+      if (err) {
+        console.error("Insert error:", err.message);
+        res.send("Error saving insertProductDescription");
+        res.end();
+      } else {
+        console.log("Data inserted:", result.insertId);
+        res.send(
+          "<h3 style='color:green;'>insertProductDescription saved successfully!</h3>"
+        );
+        res.end();
+      }
+    }
+  );
+});
 
 
 /*================================*/

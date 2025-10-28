@@ -153,6 +153,35 @@ app.post("/add-all", (req, res) => {
   );
 });
 
+/*==============POST-ProductPrice==================*/
+app.post("/add-all", (req, res) => {
+  console.log(req.body);
+  const { starting_price, price_range } = req.body;
+
+  let insertProductPrice = `INSERT INTO  ProductPrice(
+  starting_price, 
+  price_range 
+) VALUES (?, ?)`;
+
+  connection.query(
+    insertProductprice,
+    [starting_price, price_range],
+    (err, result) => {
+      if (err) {
+        console.error("Insert error:", err.message);
+        res.send("Error saving insertProductPrice");
+        res.end();
+      } else {
+        console.log("Data inserted:", result.insertId);
+        res.send(
+          "<h3 style='color:green;'>insertProductPrice saved successfully!</h3>"
+        );
+        res.end();
+      }
+    }
+  );
+});
+
 
 /*================================*/
 app.listen(3000, (err) => {

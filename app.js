@@ -132,7 +132,7 @@ app.post("/add-all", (req, res) => {
     product_brief_description,
     product_description,
     product_img,
-    product_link,) VALUES (?, ?)`;
+    product_link,) VALUES (?, ?,?)`;
 
   connection.query(
     insertProductDescription,
@@ -175,6 +175,35 @@ app.post("/add-all", (req, res) => {
         console.log("Data inserted:", result.insertId);
         res.send(
           "<h3 style='color:green;'>insertProductPrice saved successfully!</h3>"
+        );
+        res.end();
+      }
+    }
+  );
+});
+
+/*===============User-Table=================*/
+app.post("/add-all", (req, res) => {
+  console.log(req.body);
+  const { user_name, user_password } = req.body;
+
+  let insertUserTable = `INSERT INTO  UserTable(
+  user_name, 
+  user_password 
+) VALUES (?, ?)`;
+
+  connection.query(
+    insertUserTable,
+    [user_name, user_password],
+    (err, result) => {
+      if (err) {
+        console.error("Insert error:", err.message);
+        res.send("Error saving insertUser");
+        res.end();
+      } else {
+        console.log("Data inserted:", result.insertId);
+        res.send(
+          "<h3 style='color:green;'>insertUser saved successfully!</h3>"
         );
         res.end();
       }
